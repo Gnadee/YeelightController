@@ -1,5 +1,7 @@
 ﻿using System.Net.Sockets;
 using System.Text;
+using System.Drawing;
+using System;
 
 namespace YeelightClient
 {
@@ -17,7 +19,15 @@ namespace YeelightClient
             }
 
             this.tcpClient = new TcpClient();
-            this.tcpClient.Connect(device.GetEndPoint());
+
+            try
+            {
+                this.tcpClient.Connect(device.GetEndPoint());
+            }
+            catch
+            {
+
+            }
 
             if (!this.tcpClient.Connected)
             {

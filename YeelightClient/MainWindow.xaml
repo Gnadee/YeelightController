@@ -4,16 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        xmlns:local="clr-namespace:YeelightClient"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"   
-        Title="Yeelight Client" BorderBrush="Black" BorderThickness="1" Height="600" Width="500" ResizeMode="NoResize" Icon="icon.ico">
+        Title="Yeelight Client"
+        BorderBrush="Black"
+        BorderThickness="1"
+        Height="600"
+        Width="500"
+        
+        Icon="icon.ico" Visibility="Hidden" ShowInTaskbar="True" WindowState="Minimized" IsMaxRestoreButtonEnabled="False" OverlayOpacity="0" ShowMaxRestoreButton="False">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="60*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>      
+        <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -23,21 +28,21 @@
                   Grid.ColumnSpan="2" 
                   Margin="10"
                   BorderThickness="1"     
-                  Style="{StaticResource VirtualisedMetroListView}" SelectionChanged="lstBulbs_SelectionChanged">
+                  Style="{StaticResource MahApps.Styles.ListView.Virtualized}" SelectionChanged="lstBulbs_SelectionChanged">
 
-                     
+
             <ListView.View>
                 <GridView>
-                    
+
                     <GridViewColumn Header="Model">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Image Source="{Binding ModelIcon}" Width="50" Height="60"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
-                    </GridViewColumn>                   
-                    
-                    <GridViewColumn DisplayMemberBinding="{Binding Ip}" Header="Ip" />                  
+                    </GridViewColumn>
+
+                    <GridViewColumn DisplayMemberBinding="{Binding Ip}" Header="Ip" />
                     <GridViewColumn DisplayMemberBinding="{Binding State}" Header="State" />
                     <GridViewColumn DisplayMemberBinding="{Binding Brightness}" Header="Brightness" />
                 </GridView>
@@ -46,25 +51,26 @@
 
         <StackPanel Name="panelBulbControl" Grid.Row="2" IsEnabled="false">
 
-            <Controls:ToggleSwitch Margin="20, 0, 15, 0" Name="btnToggle" Header="Bulb State" OnLabel="Yes" OffLabel="No" IsCheckedChanged="btnToggle_IsCheckedChanged"  />
+            <Controls:ToggleSwitch Margin="20, 0, 15, 0" Name="btnToggle" Header="Bulb State" OnContent="Yes" OffContent="No" Toggled="btnToggle_IsCheckedChanged"  />
 
             <TextBlock Margin="10, 0, 0, 0" Text="Brightness:"/>
             <Slider Name="sliderBrightness"
                     Width="200"
-                    Style="{DynamicResource FlatSlider}"
+                    Style="{DynamicResource MahApps.Styles.Slider.Flat}"
                     Margin="10, 10, 0, 0"
                     IsEnabled="true" LostMouseCapture="sliderBrightness_LostMouseCapture" Minimum="1" />
 
             <TextBlock  Margin="10, 0, 0, 0" Text="Smooth:"/>
             <Slider Name="sliderSmooth"
                     Width="200"
-                    Style="{DynamicResource FlatSlider}"
+                    Style="{DynamicResource MahApps.Styles.Slider.Flat}"
                     Margin="10, 10, 0, 0"
-                    IsEnabled="true" Maximum="1000" Value="500" />      
-            
+                    IsEnabled="true" Maximum="1000" Value="500" />
+
+
         </StackPanel>
-              
+        <Button Content="Refresh" Margin="124,10,10,192" Grid.Column="1" Click="Button_Click"/>
         <xctk:ColorCanvas Name="colorCanvas" Grid.Row="1" Grid.Column="2" UsingAlphaChannel="False" LostMouseCapture="ColorCanvas_LostMouseCapture"/>
-        
+
     </Grid>
 </Controls:MetroWindow>

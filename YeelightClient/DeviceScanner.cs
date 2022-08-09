@@ -107,6 +107,7 @@ namespace YeelightClient
         /// </summary>
         public void StartListening()
         {
+            DiscoveredDevices.Clear();
             this.ssdpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp)
             {
                 Blocking = false,
